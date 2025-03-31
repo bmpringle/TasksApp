@@ -24,7 +24,7 @@ struct Tasks : App {
 	}
 
 	@MainActor
-    private func recursive_write_observation() {
+	private func recursive_write_observation() {
 	    withObservationTracking {
      		for task in Task.construct_flattened_task_tree(root_task: root_task) {
 				print(task.title)
@@ -38,7 +38,7 @@ struct Tasks : App {
              	try! JSONEncoder().encode(root_task).write(to: Tasks.get_data_filepath())
 	        }
 	    }
-    }
+	}
 
 	init() {
 		if FileManager.default.fileExists(atPath: Tasks.get_data_filepath().path(), isDirectory: nil) {
