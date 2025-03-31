@@ -1,0 +1,39 @@
+Data Structures:
+
+Task:
+	- Stores: id, title, description, subtasks, urgency, optional binding to parent
+	- functions: get_task_tree_depth, construct_flattened_task_tree, is_root
+
+Views:
+
+CustomNavigationView<Content> : View
+	- Stores: binding to display mode, binding to should_display_back_button, content of type Content
+	- Display:
+		- Top toolbar with back button (if should_display_back_button is true) and the display mode menu.
+		- the content provided.
+
+FullHierarchyView
+	- Stores: a binding to the root task
+	- Display:
+		- VStack
+			- A List of the flattened task tree paired with get_task_tree_depth.
+				- Display each task using TaskView with the view indented proportional to its depth.
+
+AllSubtasksView
+	- Stores: binding to a task
+	- Displays: all subtasks via a List of TaskViews contained in a VStack
+
+TaskView : View:
+	- Stores: binding to a task
+	- Displays: a single task. (Each parameter listed in an HStack)
+
+Entry Point:
+	TaskApp : App:
+		- Stores: State of the root task, current display mode
+		- Displays: CustomNavigationView(conntent : View)
+
+
+
+TODO:
+
+- Add json encoding/decoding.
